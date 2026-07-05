@@ -1,0 +1,645 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mohammed Al-Rubaiai — Staff Electrical Engineer</title>
+<meta name="description" content="Mohammed Al-Rubaiai — Staff Electrical Engineer specializing in tactile sensing, high-density mechatronics, and hardware for humanoid robots." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#14161b;
+    --bg-2:#181b21;
+    --surface:#1c2027;
+    --surface-2:#21262e;
+    --ink:#e9e7e1;
+    --ink-dim:#a7adb8;
+    --ink-faint:#737a86;
+    --copper:#d2854a;
+    --copper-bright:#eaa468;
+    --teal:#3bb6ac;
+    --line:rgba(233,231,225,.10);
+    --line-strong:rgba(233,231,225,.18);
+    --copper-glow:rgba(210,133,74,.22);
+
+    --font-display:'Space Grotesk', system-ui, -apple-system, Segoe UI, sans-serif;
+    --font-body:'Inter', system-ui, -apple-system, Segoe UI, sans-serif;
+    --font-mono:'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+    --maxw:1080px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--copper);color:#14161b;}
+
+  /* subtle blueprint grid background */
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    background-image:
+      linear-gradient(var(--line) 1px,transparent 1px),
+      linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:46px 46px;
+    opacity:.35;
+    pointer-events:none;
+    z-index:0;
+    mask-image:radial-gradient(circle at 50% 30%,#000 0%,transparent 78%);
+  }
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;position:relative;z-index:1;}
+
+  /* ---------- top nav ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(10px);
+    background:rgba(20,22,27,.72);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--maxw);margin:0 auto;padding:14px 28px;
+    display:flex;align-items:center;justify-content:space-between;gap:20px;
+  }
+  .brand{font-family:var(--font-mono);font-size:.82rem;letter-spacing:.04em;color:var(--ink);}
+  .brand b{color:var(--copper);font-weight:600;}
+  .nav-links{display:flex;gap:26px;font-family:var(--font-mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);}
+  .nav-links a{transition:color .2s;}
+  .nav-links a:hover{color:var(--copper);}
+  .nav-links a:focus-visible{outline:2px solid var(--copper);outline-offset:3px;border-radius:2px;}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding:64px 0 40px;}
+  .hero-canvas-wrap{
+    position:relative;
+    border:1px solid var(--line-strong);
+    border-radius:4px;
+    background:var(--bg-2);
+    overflow:hidden;
+    box-shadow:0 30px 80px -40px rgba(0,0,0,.8);
+  }
+  #sensor{display:block;width:100%;height:340px;cursor:crosshair;touch-action:pan-y;}
+  .sensor-readout{
+    position:absolute;top:12px;left:14px;right:14px;
+    display:flex;justify-content:space-between;gap:12px;
+    font-family:var(--font-mono);font-size:.66rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--ink-faint);
+    pointer-events:none;
+  }
+  .sensor-readout .live{color:var(--teal);}
+  .sensor-readout .live::before{content:"●";color:var(--teal);margin-right:6px;animation:blink 1.8s steps(2) infinite;}
+  .sensor-tag{
+    position:absolute;bottom:12px;left:14px;
+    font-family:var(--font-mono);font-size:.64rem;letter-spacing:.07em;
+    color:var(--ink-faint);pointer-events:none;
+  }
+  .sensor-tag b{color:var(--copper);font-weight:500;}
+  @keyframes blink{0%,49%{opacity:1}50%,100%{opacity:.25}}
+
+  .hero-text{padding-top:38px;}
+  .eyebrow{
+    font-family:var(--font-mono);font-size:.76rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--copper);
+    display:flex;align-items:center;gap:12px;margin-bottom:20px;
+  }
+  .eyebrow::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,var(--copper-glow),transparent);}
+  h1{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:clamp(2.6rem,7vw,4.9rem);
+    line-height:.98;
+    letter-spacing:-.02em;
+    margin:0 0 24px;
+  }
+  h1 .sur{color:var(--ink);}
+  .hero-lede{
+    font-size:clamp(1.05rem,2.3vw,1.32rem);
+    color:var(--ink-dim);
+    max-width:620px;
+    line-height:1.5;
+    margin:0 0 30px;
+  }
+  .hero-lede b{color:var(--ink);font-weight:500;}
+  .hero-meta{
+    display:flex;flex-wrap:wrap;gap:10px 14px;
+    font-family:var(--font-mono);font-size:.78rem;
+  }
+  .chip{
+    border:1px solid var(--line-strong);
+    border-radius:100px;
+    padding:7px 15px;
+    color:var(--ink-dim);
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .chip svg{width:13px;height:13px;color:var(--copper);}
+  .chip.cta{background:var(--copper);color:#14161b;border-color:var(--copper);font-weight:600;transition:transform .2s,background .2s;}
+  .chip.cta:hover{background:var(--copper-bright);transform:translateY(-1px);}
+  .chip a:focus-visible,.chip.cta:focus-visible{outline:2px solid var(--teal);outline-offset:3px;}
+
+  /* ---------- spec strip ---------- */
+  .specs{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    border:1px solid var(--line-strong);
+    border-radius:4px;
+    margin:54px 0 0;
+    background:var(--surface);
+    overflow:hidden;
+  }
+  .spec{padding:26px 24px;border-right:1px solid var(--line);}
+  .spec:last-child{border-right:none;}
+  .spec .num{font-family:var(--font-display);font-size:2.3rem;font-weight:600;color:var(--copper);line-height:1;letter-spacing:-.02em;}
+  .spec .lbl{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-faint);margin-top:10px;}
+
+  /* ---------- section scaffolding ---------- */
+  section{padding:78px 0;}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:42px;}
+  .sec-idx{font-family:var(--font-mono);font-size:.78rem;color:var(--copper);letter-spacing:.05em;}
+  .sec-title{font-family:var(--font-display);font-size:clamp(1.5rem,3.5vw,2.1rem);font-weight:600;letter-spacing:-.01em;margin:0;}
+  .sec-rule{flex:1;height:1px;background:var(--line);}
+
+  /* ---------- focus grid ---------- */
+  .focus-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;}
+  .focus-cell{background:var(--bg);padding:28px 24px;transition:background .25s;}
+  .focus-cell:hover{background:var(--surface);}
+  .focus-cell .fnum{font-family:var(--font-mono);font-size:.72rem;color:var(--copper);}
+  .focus-cell h3{font-family:var(--font-display);font-weight:500;font-size:1.1rem;margin:14px 0 8px;letter-spacing:-.01em;}
+  .focus-cell p{margin:0;font-size:.92rem;color:var(--ink-faint);line-height:1.5;}
+
+  /* ---------- timeline ---------- */
+  .timeline{position:relative;}
+  .tl-item{
+    display:grid;grid-template-columns:160px 1fr;gap:30px;
+    padding:28px 0;border-top:1px solid var(--line);
+    position:relative;
+  }
+  .tl-item:first-child{border-top:none;}
+  .tl-when{font-family:var(--font-mono);font-size:.78rem;color:var(--ink-faint);padding-top:4px;}
+  .tl-when .now{color:var(--teal);}
+  .tl-body{position:relative;padding-left:26px;}
+  .tl-body::before{
+    content:"";position:absolute;left:0;top:7px;width:9px;height:9px;border-radius:2px;
+    background:var(--copper);box-shadow:0 0 0 4px var(--copper-glow);
+  }
+  .tl-body::after{
+    content:"";position:absolute;left:4px;top:20px;bottom:-32px;width:1px;background:var(--line);
+  }
+  .tl-item:last-child .tl-body::after{display:none;}
+  .tl-role{font-family:var(--font-display);font-size:1.18rem;font-weight:600;letter-spacing:-.01em;}
+  .tl-co{color:var(--copper);}
+  .tl-place{font-family:var(--font-mono);font-size:.72rem;color:var(--ink-faint);margin:4px 0 12px;letter-spacing:.03em;}
+  .tl-desc{color:var(--ink-dim);font-size:.96rem;max-width:640px;margin:0;}
+
+  /* ---------- two-col blocks ---------- */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+  .card{border:1px solid var(--line-strong);border-radius:4px;background:var(--surface);padding:30px;}
+  .card h3{font-family:var(--font-display);font-weight:600;font-size:1.15rem;margin:0 0 18px;letter-spacing:-.01em;}
+  .kv{display:flex;justify-content:space-between;gap:18px;padding:13px 0;border-top:1px solid var(--line);}
+  .kv:first-of-type{border-top:none;}
+  .kv .k{color:var(--ink);font-weight:500;}
+  .kv .v{font-family:var(--font-mono);font-size:.76rem;color:var(--ink-faint);text-align:right;white-space:nowrap;}
+  .patent-list{display:flex;flex-direction:column;gap:10px;margin-top:6px;}
+  .patent{display:flex;align-items:center;gap:12px;font-family:var(--font-mono);font-size:.82rem;color:var(--ink-dim);}
+  .patent .id{color:var(--teal);}
+  .pubnote{color:var(--ink-faint);font-size:.9rem;margin:18px 0 0;line-height:1.5;}
+
+  .awards{display:flex;flex-direction:column;gap:0;}
+  .award{padding:16px 0;border-top:1px solid var(--line);display:flex;gap:16px;align-items:flex-start;}
+  .award:first-child{border-top:none;}
+  .award .yr{font-family:var(--font-mono);font-size:.74rem;color:var(--copper);min-width:62px;padding-top:2px;}
+  .award .txt{color:var(--ink-dim);font-size:.95rem;}
+  .award .txt b{color:var(--ink);font-weight:600;}
+
+  /* ---------- contact ---------- */
+  .contact{
+    border:1px solid var(--line-strong);border-radius:4px;
+    background:linear-gradient(135deg,var(--surface) 0%,var(--bg-2) 100%);
+    padding:clamp(34px,6vw,60px);text-align:center;
+  }
+  .contact h2{font-family:var(--font-display);font-weight:600;font-size:clamp(1.8rem,4.5vw,2.7rem);letter-spacing:-.02em;margin:0 0 14px;}
+  .contact p{color:var(--ink-dim);max-width:480px;margin:0 auto 30px;}
+  .contact-links{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;}
+
+  footer{padding:46px 0 60px;text-align:center;}
+  footer .ft{font-family:var(--font-mono);font-size:.72rem;color:var(--ink-faint);letter-spacing:.05em;}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:860px){
+    .specs{grid-template-columns:repeat(2,1fr);}
+    .spec:nth-child(2){border-right:none;}
+    .spec:nth-child(1),.spec:nth-child(2){border-bottom:1px solid var(--line);}
+    .focus-grid{grid-template-columns:repeat(2,1fr);}
+    .cols{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+  }
+  @media(max-width:560px){
+    .wrap{padding:0 18px;}
+    .nav-inner{padding:13px 18px;}
+    .focus-grid{grid-template-columns:1fr;}
+    .specs{grid-template-columns:1fr;}
+    .spec{border-right:none;border-bottom:1px solid var(--line);}
+    .spec:last-child{border-bottom:none;}
+    .tl-item{grid-template-columns:1fr;gap:8px;}
+    .tl-when{padding-top:0;}
+    #sensor{height:260px;}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;scroll-behavior:auto;}
+    .reveal{opacity:1;transform:none;transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand">M·<b>AL-RUBAIAI</b></div>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#focus">Focus</a>
+      <a href="#experience">Experience</a>
+      <a href="#work">Patents</a>
+      <a href="#recognition">Recognition</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-canvas-wrap reveal">
+        <canvas id="sensor" aria-label="Interactive tactile pressure-map sensor — move your cursor or finger across it"></canvas>
+        <div class="sensor-readout">
+          <span class="live">tactile array · live</span>
+          <span id="readout">peak 0.00 · cells 0</span>
+        </div>
+        <div class="sensor-tag">capacitive&nbsp;<b>+</b>&nbsp;resistive &nbsp;|&nbsp; 24&times;12 grid &nbsp;|&nbsp; press to read</div>
+      </div>
+
+      <div class="hero-text">
+        <div class="eyebrow">Staff Electrical Engineer · Sensor Integration</div>
+        <h1>Mohammed<br><span class="sur">Al-Rubaiai</span></h1>
+        <p class="hero-lede">Designing the <b>sense of touch</b> for humanoid robots — from raw materials and dense rigid-flex PCBs to the high-fidelity data that trains the models behind them.</p>
+        <div class="hero-meta">
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Austin, TX</span>
+          <a class="chip cta" href="#contact">Get in touch →</a>
+        </div>
+      </div>
+
+      <!-- SPECS -->
+      <div class="specs reveal">
+        <div class="spec"><div class="num">14<span style="font-size:1.3rem">+</span></div><div class="lbl">Years across field, R&amp;D &amp; production</div></div>
+        <div class="spec"><div class="num">3</div><div class="lbl">Granted US patents</div></div>
+        <div class="spec"><div class="num">15<span style="font-size:1.3rem">+</span></div><div class="lbl">Peer-reviewed publications</div></div>
+        <div class="spec"><div class="num">Ph.D.</div><div class="lbl">Electrical &amp; Computer Eng.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOCUS -->
+  <section id="focus">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="sec-idx">01</span><h2 class="sec-title">What I build</h2><span class="sec-rule"></span></div>
+      <div class="focus-grid reveal">
+        <div class="focus-cell"><div class="fnum">/01</div><h3>Tactile &amp; multimodal sensing</h3><p>3D-shaped capacitive and resistive sensors for hands, fingertips, and feet — owned from material to mass production.</p></div>
+        <div class="focus-cell"><div class="fnum">/02</div><h3>High-density mechatronics</h3><p>End-to-end electrical architecture for compact robotic systems where every cubic millimeter is contested.</p></div>
+        <div class="focus-cell"><div class="fnum">/03</div><h3>Rigid-flex PCB layout</h3><p>Dense rigid-flex arrays, stretchable conductors, and micro-coax routed for signal integrity under load.</p></div>
+        <div class="focus-cell"><div class="fnum">/04</div><h3>Hardware–firmware co-design</h3><p>Bridging electrical, mechanical, and firmware boundaries — SPI, I²C, I3C, and Single-Pair Ethernet pipelines.</p></div>
+        <div class="focus-cell"><div class="fnum">/05</div><h3>Wearable data capture</h3><p>Devices that record high-fidelity manipulation datasets to close the sim-to-real gap for learned control.</p></div>
+        <div class="focus-cell"><div class="fnum">/06</div><h3>Full lifecycle ownership</h3><p>Component selection, bring-up, validation, and vendor-managed production — from first principles to fleet.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="sec-idx">02</span><h2 class="sec-title">Experience</h2><span class="sec-rule"></span></div>
+      <div class="timeline">
+
+        <div class="tl-item reveal">
+          <div class="tl-when"><span class="now">Jan 2026</span> — Present</div>
+          <div class="tl-body">
+            <div class="tl-role">Staff Electrical Engineer · <span class="tl-co">Apptronik</span></div>
+            <div class="tl-place">Sensor Integration · Austin, TX</div>
+            <p class="tl-desc">Architecting the humanoid hand sensing subsystem — end-to-end electrical architecture, dense rigid-flex layouts, and high-bandwidth data pipelines (SPI / I²C / I3C / SPE) inside severe mechanical constraints. Co-leading a novel wearable to capture manipulation data and bridge the sim-to-real gap, and supporting high-density BLDC driver boards for the forearm actuator package.</p>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-when">Sep — Dec 2025</div>
+          <div class="tl-body">
+            <div class="tl-role">Robotics Sensing Consultant · <span class="tl-co">Clone Robotics</span></div>
+            <div class="tl-place">Palo Alto, CA · Remote</div>
+            <p class="tl-desc">Ran a state-of-the-art trade study of commercial and academic tactile modalities, then prototyped a 0.2 mm flexible capacitive sensor with custom readout for joint-angle measurement — plus instrumentation to capture real-time extension and compression of biomimetic pneumatic actuators.</p>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-when">Feb 2024 — Aug 2025</div>
+          <div class="tl-body">
+            <div class="tl-role">Senior Robotics Hardware Engineer · <span class="tl-co">Tesla</span></div>
+            <div class="tl-place">Palo Alto, CA</div>
+            <p class="tl-desc">Built Tesla's first 3D-shaped multimodal tactile sensor end-to-end — from raw material selection to mass-production workflows. Co-designed the second-generation fingertip sensors and the foot load-cell systems for Optimus, and led bench-top debugging and root-cause analysis across active fleets to harden reliability.</p>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-when">Aug 2022 — Dec 2023</div>
+          <div class="tl-body">
+            <div class="tl-role">Haptic Soft Actuator Scientist · <span class="tl-co">ByteDance</span></div>
+            <div class="tl-place">Greater Seattle Area</div>
+            <p class="tl-desc">Led prototyping and characterization of multimodal soft transducers for VR/AR input — two granted US patents for adaptive triggers and haptic rotary inputs, and a peer-reviewed result demonstrating sub-millimeter magnetic tactile sensing in spatial-computing form factors.</p>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-when">Nov 2021 — Aug 2022</div>
+          <div class="tl-body">
+            <div class="tl-role">Research Scientist · <span class="tl-co">Toyota North America</span></div>
+            <div class="tl-place">Ann Arbor, MI</div>
+            <p class="tl-desc">R&amp;D in soft robotics, smart materials, and mechatronic systems for wearables — introducing new polymer technologies into core mechatronics platforms and feeding technical insight into future product pipelines.</p>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-when">Aug 2016 — Dec 2021</div>
+          <div class="tl-body">
+            <div class="tl-role">Research Assistant · <span class="tl-co">Michigan State University</span></div>
+            <div class="tl-place">Lansing, MI Area</div>
+            <p class="tl-desc">PhD research in additively manufactured soft actuators, stiffness tuning, and lightweight 3D-printed strain and pressure sensors — including modeling and characterization of PVC-gel actuators for Toyota, resulting in a granted US patent.</p>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-when">Apr 2012 — May 2013</div>
+          <div class="tl-body">
+            <div class="tl-role">Wireline Field Engineer · <span class="tl-co">Schlumberger</span></div>
+            <div class="tl-place">Basra, Iraq</div>
+            <p class="tl-desc">Managed field crews and high-value wireline assets to execute complex downhole data-acquisition jobs under strict client specifications and safety compliance.</p>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-when">Sep 2009 — Oct 2011</div>
+          <div class="tl-body">
+            <div class="tl-role">Control Engineer · <span class="tl-co">Taehwa</span></div>
+            <div class="tl-place">Erbil, Iraq</div>
+            <p class="tl-desc">Programmed and debugged PLCs, diagnosed complex electromechanical faults, and validated industrial computer systems for automated equipment.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PATENTS / EDUCATION -->
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="sec-idx">03</span><h2 class="sec-title">Patents &amp; education</h2><span class="sec-rule"></span></div>
+      <div class="cols">
+        <div class="card reveal">
+          <h3>Patents &amp; publications</h3>
+          <div class="patent-list">
+            <div class="patent"><span class="id">US 12055449</span> Flexible sensor arrays</div>
+            <div class="patent"><span class="id">US 12056282</span> Adaptive triggers for soft actuators</div>
+            <div class="patent"><span class="id">US 12189858</span> Haptic rotary inputs</div>
+          </div>
+          <p class="pubnote">Author / co-author of 15+ peer-reviewed papers in IEEE/ASME Transactions on Mechatronics, Soft Robotics, and Smart Materials and Structures. Technical reviewer for top-tier robotics and smart-materials journals.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Education</h3>
+          <div class="kv"><span class="k">Ph.D. · Electrical &amp; Computer Engineering</span><span class="v">MSU · 2021</span></div>
+          <div class="kv"><span class="k">M.S. · Electrical &amp; Computer Engineering</span><span class="v">MSU · 2015</span></div>
+          <div class="kv"><span class="k">B.S. · Mechatronics Engineering</span><span class="v">U. Baghdad · 2009</span></div>
+          <p class="pubnote">First-principles engineering across the full hardware stack — electrical, mechanical, and firmware — with a research foundation in soft robotics and smart materials.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECOGNITION -->
+  <section id="recognition">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="sec-idx">04</span><h2 class="sec-title">Recognition</h2><span class="sec-rule"></span></div>
+      <div class="card reveal">
+        <div class="awards">
+          <div class="award"><span class="yr">2024</span><span class="txt"><b>EB-2 National Interest Waiver</b> — permanent residency approved on the basis of significant research contributions to soft robotics and sensor technologies.</span></div>
+          <div class="award"><span class="yr">2021</span><span class="txt"><b>Best Student Paper · Gold Award</b> — Modeling, Estimation and Control Conference (MECC).</span></div>
+          <div class="award"><span class="yr">2021</span><span class="txt"><b>MSU Dissertation Completion Fellowship</b> — awarded for the final year of doctoral research.</span></div>
+          <div class="award"><span class="yr">2015–17</span><span class="txt"><b>MSU Graduate School Fellowships</b> — multi-year research support.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact reveal">
+        <h2>Let's build the sense of touch.</h2>
+        <p>Open to conversations on tactile sensing, robotic hardware, and high-density mechatronic systems.</p>
+        <div class="contact-links">
+          <a class="chip cta" href="mailto:robomkmt@gmail.com">robomkmt@gmail.com</a>
+          <a class="chip" href="tel:+15179405098"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>517-940-5098</a>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Austin, TX</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="ft">MOHAMMED AL-RUBAIAI · STAFF ELECTRICAL ENGINEER · SENSOR INTEGRATION</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ---------- tactile sensor pressure-map ---------- */
+  var canvas = document.getElementById('sensor');
+  var ctx = canvas.getContext('2d');
+  var COLS = 24, ROWS = 12;
+  var grid = new Float32Array(COLS*ROWS);
+  var dpr = Math.min(window.devicePixelRatio||1, 2);
+  var W=0,H=0,cw=0,ch=0,gap=0;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var readoutEl = document.getElementById('readout');
+
+  function resize(){
+    var r = canvas.getBoundingClientRect();
+    W = r.width; H = r.height;
+    canvas.width = Math.round(W*dpr);
+    canvas.height = Math.round(H*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    gap = Math.max(1.5, W/420);
+    cw = (W - gap*(COLS+1))/COLS;
+    ch = (H - gap*(ROWS+1))/ROWS;
+  }
+
+  // 4-stop color ramp: idle -> teal -> copper -> hot white
+  function color(v){
+    v = v<0?0:v>1?1:v;
+    var stops = [
+      [0.00, 26,29,36],
+      [0.30, 35,90,92],
+      [0.62, 178,103,52],
+      [0.86, 234,164,104],
+      [1.00, 245,237,226]
+    ];
+    for(var i=0;i<stops.length-1;i++){
+      var a=stops[i], b=stops[i+1];
+      if(v>=a[0] && v<=b[0]){
+        var t=(v-a[0])/(b[0]-a[0]);
+        var R=a[1]+(b[1]-a[1])*t;
+        var G=a[2]+(b[2]-a[2])*t;
+        var B=a[3]+(b[3]-a[3])*t;
+        return 'rgb('+(R|0)+','+(G|0)+','+(B|0)+')';
+      }
+    }
+    return 'rgb(245,237,226)';
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    var peak=0, active=0;
+    for(var y=0;y<ROWS;y++){
+      for(var x=0;x<COLS;x++){
+        var v = grid[y*COLS+x];
+        if(v>peak) peak=v;
+        if(v>0.08) active++;
+        var px = gap + x*(cw+gap);
+        var py = gap + y*(ch+gap);
+        ctx.fillStyle = color(v);
+        var rad = Math.min(2.5, cw*0.18);
+        roundRect(px,py,cw,ch,rad);
+        ctx.fill();
+        if(v>0.45){
+          ctx.save();
+          ctx.shadowColor='rgba(234,164,104,'+(v*0.5)+')';
+          ctx.shadowBlur=12*v;
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+    }
+    if(readoutEl){
+      readoutEl.textContent = 'peak '+peak.toFixed(2)+' · cells '+active;
+    }
+  }
+
+  function roundRect(x,y,w,h,r){
+    if(w<2*r) r=w/2; if(h<2*r) r=h/2;
+    ctx.beginPath();
+    ctx.moveTo(x+r,y);
+    ctx.arcTo(x+w,y,x+w,y+h,r);
+    ctx.arcTo(x+w,y+h,x,y+h,r);
+    ctx.arcTo(x,y+h,x,y,r);
+    ctx.arcTo(x,y,x+w,y,r);
+    ctx.closePath();
+  }
+
+  function bloom(mx,my,strength){
+    // convert px -> grid coords
+    var gx = (mx - gap) / (cw+gap);
+    var gy = (my - gap) / (ch+gap);
+    var radius = 3.2;
+    for(var y=0;y<ROWS;y++){
+      for(var x=0;x<COLS;x++){
+        var dx=x-gx, dy=y-gy;
+        var d=Math.sqrt(dx*dx+dy*dy);
+        if(d<radius){
+          var add = (1 - d/radius) * strength;
+          var idx=y*COLS+x;
+          grid[idx] = Math.min(1, grid[idx]+add);
+        }
+      }
+    }
+  }
+
+  // pointer interaction
+  var lastX=0,lastY=0,hasPointer=false;
+  function pointer(e){
+    var r = canvas.getBoundingClientRect();
+    var x = (e.clientX!=null?e.clientX:(e.touches&&e.touches[0].clientX)) - r.left;
+    var y = (e.clientY!=null?e.clientY:(e.touches&&e.touches[0].clientY)) - r.top;
+    lastX=x; lastY=y; hasPointer=true;
+    bloom(x,y,0.55);
+  }
+  canvas.addEventListener('pointermove', pointer, {passive:true});
+  canvas.addEventListener('pointerdown', function(e){ pointer(e); bloom(lastX,lastY,0.9); }, {passive:true});
+  canvas.addEventListener('pointerleave', function(){ hasPointer=false; });
+
+  // ambient idle wave (skipped under reduced motion)
+  var t=0;
+  function idle(){
+    t+=0.018;
+    var ix = (Math.sin(t)*0.5+0.5)*COLS;
+    var iy = (Math.cos(t*0.8)*0.5+0.5)*ROWS;
+    bloom(gap+ix*(cw+gap), gap+iy*(ch+gap), 0.12);
+  }
+
+  function decay(){
+    for(var i=0;i<grid.length;i++){
+      grid[i] *= 0.90;
+      if(grid[i]<0.002) grid[i]=0;
+    }
+  }
+
+  function loop(){
+    if(!hasPointer) idle();
+    decay();
+    draw();
+    requestAnimationFrame(loop);
+  }
+
+  function seedStatic(){
+    // a calm fixed pattern for reduced-motion users
+    bloom(W*0.30, H*0.42, 0.85);
+    bloom(W*0.62, H*0.58, 0.6);
+    bloom(W*0.80, H*0.30, 0.4);
+    draw();
+  }
+
+  resize();
+  if(reduce){ seedStatic(); }
+  else{ requestAnimationFrame(loop); }
+  window.addEventListener('resize', function(){
+    resize();
+    if(reduce){ for(var i=0;i<grid.length;i++)grid[i]=0; seedStatic(); }
+  });
+
+  /* ---------- scroll reveal ---------- */
+  if(!reduce && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, {threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+</body>
+</html>
