@@ -268,6 +268,50 @@
   footer{padding:46px 0 60px;text-align:center;}
   footer .ft{font-family:var(--font-mono);font-size:.72rem;color:var(--ink-faint);letter-spacing:.05em;}
 
+  /* ---------- publications ---------- */
+  .pub-filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;}
+  .pub-filt{
+    font-family:var(--font-mono);font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;
+    color:var(--ink-dim);border:1px solid var(--line-strong);background:transparent;
+    border-radius:100px;padding:6px 14px;cursor:pointer;transition:all .2s;
+  }
+  .pub-filt:hover{border-color:var(--copper);color:var(--ink);}
+  .pub-filt.active{background:var(--copper);color:#14161b;border-color:var(--copper);font-weight:500;}
+  .pub-filt:focus-visible{outline:2px solid var(--teal);outline-offset:3px;}
+  .paper{border:1px solid var(--line-strong);border-radius:10px;background:var(--surface);overflow:hidden;margin-bottom:10px;transition:border-color .2s;}
+  .paper:hover{border-color:var(--copper-glow);}
+  .paper-hd{display:flex;align-items:flex-start;gap:14px;padding:20px 22px;cursor:pointer;list-style:none;}
+  .paper-hd::-webkit-details-marker{display:none;}
+  .paper-main{flex:1;min-width:0;}
+  .paper-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:9px;}
+  .ptag{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.04em;padding:3px 9px;border-radius:4px;}
+  .ptag.venue{color:var(--teal);border:1px solid rgba(59,182,172,.35);}
+  .ptag.year{color:var(--ink-faint);border:1px solid var(--line);}
+  .ptag.role{color:var(--copper);border:1px solid rgba(210,133,74,.35);}
+  .paper-t{font-family:var(--font-display);font-size:1.05rem;font-weight:500;line-height:1.35;margin:0 0 7px;letter-spacing:-.01em;}
+  .paper-auth{font-family:var(--font-mono);font-size:.72rem;color:var(--ink-faint);line-height:1.5;}
+  .paper-auth b{color:var(--copper);font-weight:500;}
+  .paper-chev{color:var(--ink-faint);font-size:1.1rem;line-height:1;transition:transform .25s;flex-shrink:0;margin-top:2px;}
+  .paper.open .paper-chev{transform:rotate(180deg);color:var(--copper);}
+  .paper-body{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+  .paper.open .paper-body{max-height:300px;}
+  .paper-inner{border-top:1px solid var(--line);padding:16px 22px 20px;}
+  .paper-take{color:var(--ink-dim);font-size:.93rem;line-height:1.6;margin:0 0 16px;}
+  .paper-links{display:flex;gap:10px;flex-wrap:wrap;}
+  .paper-links a{
+    font-family:var(--font-mono);font-size:.72rem;color:var(--copper);
+    border:1px solid var(--line-strong);border-radius:6px;padding:7px 13px;
+    display:inline-flex;align-items:center;gap:6px;transition:all .2s;
+  }
+  .paper-links a:hover{border-color:var(--copper);color:var(--copper-bright);}
+  .pub-foot{margin-top:18px;display:flex;gap:20px;flex-wrap:wrap;}
+  .pub-foot a{
+    font-family:var(--font-mono);font-size:.78rem;color:var(--copper);
+    display:inline-flex;align-items:center;gap:7px;transition:color .2s;
+  }
+  .pub-foot a:hover{color:var(--copper-bright);}
+  .paper.filtered-out{display:none;}
+
   /* ---------- reveal ---------- */
   .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease;}
   .reveal.in{opacity:1;transform:none;}
@@ -308,6 +352,7 @@
       <a href="#focus">Focus</a>
       <a href="#experience">Experience</a>
       <a href="#work">Patents</a>
+      <a href="#publications">Publications</a>
       <a href="#recognition">Recognition</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -471,10 +516,120 @@
     </div>
   </section>
 
+  <!-- SELECTED PUBLICATIONS -->
+  <section id="publications">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="sec-idx">04</span><h2 class="sec-title">Selected publications</h2><span class="sec-rule"></span></div>
+      <div class="reveal">
+        <div class="pub-filters" role="group" aria-label="Filter publications by topic">
+          <button class="pub-filt active" data-f="all">All</button>
+          <button class="pub-filt" data-f="sensing">Sensing</button>
+          <button class="pub-filt" data-f="actuators">Actuators &amp; control</button>
+          <button class="pub-filt" data-f="systems">Systems</button>
+        </div>
+
+        <div class="paper open" data-topic="actuators">
+          <div class="paper-hd">
+            <div class="paper-main">
+              <div class="paper-tags"><span class="ptag venue">IEEE/ASME Trans. Mechatronics</span><span class="ptag year">2022</span><span class="ptag role">First + corresponding author</span></div>
+              <h3 class="paper-t">Nonlinear modeling and control of polyvinyl chloride (PVC) gel actuators</h3>
+              <div class="paper-auth"><b>M. Al-Rubaiai</b>, X. Qi, Z. Frank, R. Tsuruta, U. Gandhi, K. J. Kim, X. Tan</div>
+            </div>
+            <span class="paper-chev" aria-hidden="true">&#9662;</span>
+          </div>
+          <div class="paper-body"><div class="paper-inner">
+            <p class="paper-take">The first data-driven dynamic model for PVC-gel &ldquo;artificial muscle&rdquo; actuators &mdash; a Hammerstein model whose response shifts with the driving voltage&rsquo;s amplitude and bias &mdash; paired with an inverse-compensation-plus-PID controller and a disturbance observer. Together they cut trajectory-tracking error by more than 80% versus a well-tuned PID.</p>
+            <div class="paper-links"><a href="https://doi.org/10.1109/TMECH.2022.3175445" target="_blank" rel="noopener">DOI &#8599;</a></div>
+          </div></div>
+        </div>
+
+        <div class="paper" data-topic="sensing">
+          <div class="paper-hd">
+            <div class="paper-main">
+              <div class="paper-tags"><span class="ptag venue">Springer &middot; EuroHaptics</span><span class="ptag year">2024</span><span class="ptag role">ByteDance / Pico</span></div>
+              <h3 class="paper-t">Foam magnetic tactile sensors for spatial computing input</h3>
+              <div class="paper-auth">W. Marquette, A. Israr, <b>M. Al-Rubaiai</b></div>
+            </div>
+            <span class="paper-chev" aria-hidden="true">&#9662;</span>
+          </div>
+          <div class="paper-body"><div class="paper-inner">
+            <p class="paper-take">A soft silicone-foam tactile sensor (a magnet read by a Hall-effect element) with sub-millimeter resolution, 0.56 mm. It was built into three VR/AR input devices &mdash; a soft 3D joystick, a finger-grip controller, and a force-myography wristband whose small neural net recognized hand gestures at over 97% for a personalized user.</p>
+            <div class="paper-links"><a href="https://doi.org/10.1007/978-3-031-76803-3_21" target="_blank" rel="noopener">DOI &#8599;</a></div>
+          </div></div>
+        </div>
+
+        <div class="paper" data-topic="sensing">
+          <div class="paper-hd">
+            <div class="paper-main">
+              <div class="paper-tags"><span class="ptag venue">Smart Materials and Structures</span><span class="ptag year">2019</span><span class="ptag role">First author</span></div>
+              <h3 class="paper-t">A 3D-printed stretchable strain sensor for wind sensing</h3>
+              <div class="paper-auth"><b>M. Al-Rubaiai</b>, R. Tsuruta, U. Gandhi, C. Wang, X. Tan</div>
+            </div>
+            <span class="paper-chev" aria-hidden="true">&#9662;</span>
+          </div>
+          <div class="paper-body"><div class="paper-inner">
+            <p class="paper-take">A fully 3D-printed, stretchable strain sensor &mdash; conductive filament printed directly into a hyper-elastic substrate &mdash; used as a low-cost wind sensor. The best material, a conductive TPU, reached a gauge factor of 20 (competitive with metal-foil gauges), and in a wind tunnel it tracked speeds above 3.5 m/s, with coupled fluid-structure simulation matching the measured output.</p>
+            <div class="paper-links"><a href="https://doi.org/10.1088/1361-665X/ab1fa9" target="_blank" rel="noopener">DOI &#8599;</a></div>
+          </div></div>
+        </div>
+
+        <div class="paper" data-topic="actuators">
+          <div class="paper-hd">
+            <div class="paper-main">
+              <div class="paper-tags"><span class="ptag venue">Soft Robotics</span><span class="ptag year">2019</span><span class="ptag role">Co-first author</span></div>
+              <h3 class="paper-t">Soft actuators with stiffness and shape modulation using 3D-printed conductive polylactic acid</h3>
+              <div class="paper-auth"><b>M. Al-Rubaiai</b>, T. Pinto, C. Qian, X. Tan</div>
+            </div>
+            <span class="paper-chev" aria-hidden="true">&#9662;</span>
+          </div>
+          <div class="paper-body"><div class="paper-inner">
+            <p class="paper-take">A 3D-printed conductive-PLA layer that gives a soft pneumatic actuator electrically switchable joints: passing current through a spot softens it (a ~99% drop in stiffness), so it bends only where you choose. Cool it and the shape locks &mdash; the finger then holds an 800 g load with air pressure and power switched off. Shown in a two-finger gripper.</p>
+            <div class="paper-links"><a href="https://doi.org/10.1089/soro.2018.0056" target="_blank" rel="noopener">DOI &#8599;</a></div>
+          </div></div>
+        </div>
+
+        <div class="paper" data-topic="sensing">
+          <div class="paper-hd">
+            <div class="paper-main">
+              <div class="paper-tags"><span class="ptag venue">Advanced Functional Materials</span><span class="ptag year">2019</span></div>
+              <h3 class="paper-t">Screen-printed soft capacitive sensors for spatial mapping of both positive and negative pressures</h3>
+              <div class="paper-auth">H. Shi, <b>M. Al-Rubaiai</b>, C. M. Holbrook, J. Miao, T. Pinto, C. Wang, X. Tan</div>
+            </div>
+            <span class="paper-chev" aria-hidden="true">&#9662;</span>
+          </div>
+          <div class="paper-body"><div class="paper-inner">
+            <p class="paper-take">A low-cost, screen-printed soft sensor that reliably reads both positive and negative pressure (&minus;60 to 20 kPa) &mdash; a range most soft sensors can&rsquo;t handle &mdash; by engineering air-gap channels into a stretchable dielectric. Stable over thousands of bend and stretch cycles, and scaled into a 12&times;12-pixel array that spatially maps pressure across a surface.</p>
+            <div class="paper-links"><a href="https://doi.org/10.1002/adfm.201809116" target="_blank" rel="noopener">DOI &#8599;</a></div>
+          </div></div>
+        </div>
+
+        <div class="paper" data-topic="systems">
+          <div class="paper-hd">
+            <div class="paper-main">
+              <div class="paper-tags"><span class="ptag venue">IEEE AIM</span><span class="ptag year">2016</span><span class="ptag role">First author</span></div>
+              <h3 class="paper-t">Design and development of an LED-based optical communication system with active alignment control</h3>
+              <div class="paper-auth"><b>M. Al-Rubaiai</b>, X. Tan</div>
+            </div>
+            <span class="paper-chev" aria-hidden="true">&#9662;</span>
+          </div>
+          <div class="paper-body"><div class="paper-inner">
+            <p class="paper-take">A compact underwater optical-communication system &mdash; one LED, one photodiode &mdash; with active alignment control that keeps the light link locked as robots move. It hit 115,200 bps over 23 m in pool tests; with alignment control on, data loss dropped from 56% to under 10% while the receiver swung &plusmn;60&deg;.</p>
+            <div class="paper-links"><a href="https://ieeexplore.ieee.org/document/7576760" target="_blank" rel="noopener">IEEE Xplore &#8599;</a></div>
+          </div></div>
+        </div>
+
+        <div class="pub-foot">
+          <a href="https://scholar.google.com/citations?user=o7F4Z8MAAAAJ&hl=en" target="_blank" rel="noopener">Full list on Google Scholar &#8599;</a>
+          <a href="https://orcid.org/0000-0003-2335-0196" target="_blank" rel="noopener">ORCID &#8599;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- RECOGNITION -->
   <section id="recognition">
     <div class="wrap">
-      <div class="sec-head reveal"><span class="sec-idx">04</span><h2 class="sec-title">Recognition</h2><span class="sec-rule"></span></div>
+      <div class="sec-head reveal"><span class="sec-idx">05</span><h2 class="sec-title">Recognition</h2><span class="sec-rule"></span></div>
       <div class="card reveal">
         <div class="awards">
           <div class="award"><span class="yr">2024</span><span class="txt"><b>EB-2 National Interest Waiver</b> — permanent residency approved on the basis of significant research contributions to soft robotics and sensor technologies.</span></div>
@@ -528,8 +683,8 @@
     canvas.height = Math.round(H*dpr);
     ctx.setTransform(dpr,0,0,dpr,0,0);
     gap = Math.max(1.5, W/420);
-    cw = (W - gap*(COLS+1))/COLS;
-    ch = (H - gap*(ROWS+1))/ROWS;
+    cw = Math.max(0, (W - gap*(COLS+1))/COLS);
+    ch = Math.max(0, (H - gap*(ROWS+1))/ROWS);
   }
 
   // 4-stop color ramp: idle -> teal -> copper -> hot white
@@ -566,7 +721,7 @@
         var px = gap + x*(cw+gap);
         var py = gap + y*(ch+gap);
         ctx.fillStyle = color(v);
-        var rad = Math.min(2.5, cw*0.18);
+        var rad = Math.max(0, Math.min(2.5, cw*0.18));
         roundRect(px,py,cw,ch,rad);
         ctx.fill();
         if(v>0.45){
@@ -584,7 +739,9 @@
   }
 
   function roundRect(x,y,w,h,r){
+    if(w<=0||h<=0) return;
     if(w<2*r) r=w/2; if(h<2*r) r=h/2;
+    if(r<0) r=0;
     ctx.beginPath();
     ctx.moveTo(x+r,y);
     ctx.arcTo(x+w,y,x+w,y+h,r);
@@ -675,6 +832,23 @@
   } else {
     document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
   }
+
+  /* ---------- publications: expand + filter ---------- */
+  document.querySelectorAll('#publications .paper-hd').forEach(function(hd){
+    hd.addEventListener('click', function(){ hd.parentElement.classList.toggle('open'); });
+  });
+  var filts = document.querySelectorAll('#publications .pub-filt');
+  filts.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      filts.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.getAttribute('data-f');
+      document.querySelectorAll('#publications .paper').forEach(function(p){
+        var show = (f === 'all') || (p.getAttribute('data-topic') === f);
+        p.classList.toggle('filtered-out', !show);
+      });
+    });
+  });
 })();
 </script>
 </body>
